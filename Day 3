@@ -1,0 +1,88 @@
+
+
+// 345. Reverse Vowels of a String
+// Given a string s, reverse only all the vowels in the string and return it.
+
+// The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+
+//code 
+
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+
+
+        s = list(s)
+        vowels = {'a','e','i','o','u','A','E','I','O','U'}
+
+        start = 0
+        end = len(s) - 1
+
+
+        while start < end :
+
+            if s[start] in vowels and s[end] in vowels :
+
+                s[start] , s[end] = s[end] , s[start]
+                start += 1
+                end -= 1
+
+            elif s[start] in vowels :
+
+                end -= 1
+            
+            elif s[end] in vowels :
+
+                start += 1
+
+            else : 
+
+                start += 1
+                end -= 1
+            
+
+        return "".join(s)
+
+
+
+
+//151. Reverse Words in a String
+
+//Given an input string s, reverse the order of the words.
+//A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space.
+//Return a string of the words in reverse order concatenated by a single space.
+//Note that s may contain leading or trailing spaces or multiple spaces between two words. The returned string should only have a single space separating the words. Do not include any extra spaces.
+
+//code
+
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+
+        
+        s = s.strip()
+
+        string_list = []
+        temp = ""
+        
+
+        for i in s :
+
+            if i != " " :
+
+                temp = temp + i
+
+            else : 
+                if temp :
+                    string_list.append(temp)
+                    temp = ""
+
+        if temp : 
+            
+            string_list.append(temp)
+
+        rev = string_list[::-1]
+
+        return " ".join(rev)
+
+
+            
