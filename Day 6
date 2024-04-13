@@ -1,0 +1,59 @@
+// 392. Is Subsequence
+
+// Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+// A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+
+
+// code 
+
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+
+        i = k = 0 
+
+        while i < len(s) and k < len(t) :
+
+            if s[i] == t[k] :
+
+                i += 1
+            k += 1
+            
+        return True if i == len(s) else False
+        
+
+
+
+// 11. Container With Most Water
+
+// You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+// Find two lines that together with the x-axis form a container, such that the container contains the most water.
+// Return the maximum amount of water a container can store.
+
+// code 
+
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        
+        l = 0
+
+        r = len(height) - 1
+        m_area = 0
+
+        while l < r :
+
+            b = r - l
+            h = min(height[l] , height[r])
+            area = h * b
+
+            m_area = max(m_area , area)
+
+            if h < height[r] :
+
+                l += 1
+            
+            else :
+
+                r -= 1
+
+        return m_area
