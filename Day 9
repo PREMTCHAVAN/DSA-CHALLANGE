@@ -1,0 +1,63 @@
+// 1493. Longest Subarray of 1's After Deleting One Element
+
+// Given a binary array nums, you should delete one element from it.
+// Return the size of the longest non-empty subarray containing only 1's in the resulting array. Return 0 if there is no such subarray.
+
+// code
+
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+
+        pre = curr = ans = 0
+
+        Zero = False
+
+        
+        for i in nums :
+
+            if i == 1 :
+
+                curr += 1
+
+            else :
+
+                ans = max( ans , (curr + pre) )
+
+                pre = curr
+                curr = 0
+                Zero = True
+
+        ans = max( ans , (curr + pre)  )
+
+        if not Zero :
+
+            ans -= 1
+
+        return ans
+
+
+
+// 1732. Find the Highest Altitude
+
+// There is a biker going on a road trip. The road trip consists of n + 1 points at different altitudes. The biker starts his trip on point 0 with altitude equal 0.
+// You are given an integer array gain of length n where gain[i] is the net gain in altitude between points i​​​​​​ and i + 1 for all (0 <= i < n). Return the highest altitude of a point.
+
+
+// code
+
+class Solution:
+    def largestAltitude(self, gain: List[int]) -> int:
+
+        res = [0]
+
+        for i in range(0,len(gain)) :
+
+            temp = res[i] + gain[i]
+
+            res.append(temp)
+
+        return max(res)
+
+
+
+        
