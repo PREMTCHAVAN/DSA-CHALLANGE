@@ -1,0 +1,53 @@
+2390. Removing Stars From a String
+
+You are given a string s, which contains stars *.
+
+In one operation, you can:
+
+Choose a star in s.
+Remove the closest non-star character to its left, as well as remove the star itself.
+Return the string after all stars have been removed.
+
+Note:
+
+The input will be generated such that the operation is always possible.
+It can be shown that the resulting string will always be unique.
+
+// code 
+class Solution:
+    def removeStars(self, s: str) -> str: 
+
+        stk = []
+        for char in s :
+            if char == "*" :
+                stk.pop()
+            else :
+                stk.append(char)
+        return "".join(stk)
+
+
+
+2352. Equal Row and Column Pairs
+
+Given a 0-indexed n x n integer matrix grid, return the number of pairs (ri, cj) such that row ri and column cj are equal.
+
+A row and column pair is considered equal if they contain the same elements in the same order (i.e., an equal array).
+
+
+// code 
+
+class Solution:
+    def equalPairs(self, grid: List[List[int]]) -> int:
+
+        count = 0
+
+        for i in range(len(grid)) :
+
+            for j in range(len(grid)) :
+
+                if grid[i] == [row[j] for row in grid ] :
+
+                    count += 1
+
+        return count
+        
