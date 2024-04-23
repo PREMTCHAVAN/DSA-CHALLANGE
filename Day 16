@@ -1,0 +1,92 @@
+933. Number of Recent Calls
+
+You have a RecentCounter class which counts the number of recent requests within a certain time frame.
+
+Implement the RecentCounter class:
+
+RecentCounter() Initializes the counter with zero recent requests.
+int ping(int t) Adds a new request at time t, where t represents some time in milliseconds, and returns the number of requests that has happened in the past 3000 milliseconds (including the new request). Specifically, return the number of requests that have happened in the inclusive range [t - 3000, t].
+It is guaranteed that every call to ping uses a strictly larger value of t than the previous call.
+
+// code 
+
+class RecentCounter:
+
+    def __init__(self):
+
+        self.q = deque()
+        self.count = 0
+        
+
+    def ping(self, t: int) -> int:
+
+        self.q.append(t)
+        self.count += 1
+
+        while self.q and self.q[0] < t - 3000 :
+
+            self.q.popleft()
+            self.count -= 1
+
+        
+        return self.count 
+        
+
+
+# Your RecentCounter object will be instantiated and called as such:
+# obj = RecentCounter()
+# param_1 = obj.ping(t)
+
+
+
+649. Dota2 Senate
+
+In the world of Dota2, there are two parties: the Radiant and the Dire.
+The Dota2 senate consists of senators coming from two parties. Now the Senate wants to decide on a change in the Dota2 game. The voting for this change is a round-based procedure. In each round, each senator can exercise one of the two rights:
+
+Ban one senator's right: A senator can make another senator lose all his rights in this and all the following rounds.
+Announce the victory: If this senator found the senators who still have rights to vote are all from the same party, he can announce the victory and decide on the change in the game.
+Given a string senate representing each senator's party belonging. The character 'R' and 'D' represent the Radiant party and the Dire party. Then if there are n senators, the size of the given string will be n.
+
+The round-based procedure starts from the first senator to the last senator in the given order. This procedure will last until the end of voting. All the senators who have lost their rights will be skipped during the procedure.
+
+Suppose every senator is smart enough and will play the best strategy for his own party. Predict which party will finally announce the victory and change the Dota2 game. The output should be "Radiant" or "Dire".
+
+
+// code 
+
+
+class Solution:
+    def predictPartyVictory(self, senate: str) -> str:
+
+        r_que = deque()
+        d_que = deque()
+
+        for i , party in enumerate(senate) :
+
+            if party == "R" :
+
+                r_que.append(i)
+                
+            else :
+
+                d_que.append(i)
+
+        while r_que and d_que :
+
+            r_id = r_que.popleft()
+            d_id = d_que.popleft()
+
+            if r_id < d_id :
+
+                r_que.append(r_id + len(senate))
+
+            else :
+
+                d_que.append(d_id + len(senate))
+
+        
+        return "Radiant" if len(r_que) > 0 else "Dire"
+
+
+ 
