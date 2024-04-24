@@ -1,0 +1,39 @@
+136. Single Number
+
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+// code
+
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+
+        res = 0
+
+        for i in nums :
+
+            res ^= i 
+
+        return res 
+
+
+
+338. Counting Bits
+
+Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.
+
+
+// code 
+
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        
+        res = [0] * (n + 1)
+
+        for i in range(1,n+1) :
+
+            res[i] = res[i >> 1] + ( i & 1)
+
+        
+        return res
