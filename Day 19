@@ -1,0 +1,166 @@
+LINKED LIST 
+
+LEARNING LINKED LIST 
+IMPLEMENTING , DELETING NODE FORM BEGINNIGN 
+               DELETING NODE FROM END
+               DELETING SPECIFIC NODE 
+
+// code 
+
+
+
+class Node :
+
+    def __init__(self , data ) :
+
+        self.data = data
+        self.next = None
+
+
+class LinkedList :
+
+    def __init__(self) :
+
+        self.head = None
+
+    
+    def traverseLL(self) :
+
+        if self.head is None :
+
+            print("LINKED LIST IS EMPTY ") 
+
+        else :
+
+            n = self.head
+
+            while n != None :
+
+                print(n.data , end=" -> ")
+                n = n.next
+
+    
+    def insert_at_beginnig(self , data ) :
+
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    
+    def insert_at_end(self , data ) :
+
+        new_node = Node(data)
+
+        if self.head is None :
+
+            self.head = new_node
+        
+        else :
+
+            n = self.head
+            while n.next is not None :
+
+                n = n.next
+            
+            n.next = new_node
+
+    
+    def insert_after_node(self , data , pos ) :
+
+        n = self.head
+
+        while n is not None :
+
+            if pos == n.data :
+
+                break
+            n = n.next
+
+        if n is None :
+
+            print("DATA IS NOT PRESENT IN THE LINKED LIST ")
+
+        else :
+
+            new_node = Node(data)
+            new_node.next = n.next
+            n.next = new_node
+
+
+    def delete_from_beginnig(self ) :
+
+        if self.head is None :
+
+            print("LINKED LIST IS EMPTY ")
+
+        else :
+
+            self.head = self.head.next
+
+
+
+    def delete_from_end(self) :
+
+        if self.head is None :
+
+            print("EMPTY LINKED LIST")
+
+        elif self.head.next is None :
+
+            self.head = None
+
+        else :
+            
+            n = self.head
+            while n.next.next is not None :
+
+                n = n.next
+
+            n.next = None
+
+    
+    def delete_form_pos(self , pos ) :
+
+        if self.head is None :
+
+            print("EMPTY LIST ")
+            return 
+
+        if self.head.data == pos :
+
+            self.head = self.head.next
+            
+            return
+
+        n = self.head 
+
+        while n.next is not None :
+
+            if pos == n.next.data :
+
+                break
+
+            n = n.next
+
+            
+        if n.next is None :
+
+            print(" DATA  NOT FOUND ")
+
+        else :
+
+            n.next = n.next.next
+
+
+
+ll = LinkedList()
+ll.insert_at_beginnig(100)
+ll.insert_after_node(300 , 100)
+ll.insert_at_beginnig(200)
+ll.insert_at_end(50)
+ll.traverseLL()
+print()
+# ll.delete_from_beginnig()
+# ll.delete_from_end()
+ll.delete_form_pos(100)
+ll.traverseLL()
