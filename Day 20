@@ -1,0 +1,77 @@
+2095. Delete the Middle Node of a Linked List
+
+You are given the head of a linked list. Delete the middle node, and return the head of the modified linked list.
+The middle node of a linked list of size n is the ⌊n / 2⌋th node from the start using 0-based indexing, where ⌊x⌋ denotes the largest integer less than or equal to x.
+For n = 1, 2, 3, 4, and 5, the middle nodes are 0, 1, 1, 2, and 2, respectively.
+
+// code
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+        if not head or not head.next :
+
+            return None
+
+        slow = head 
+        fast = head.next.next 
+
+        while fast and fast.next :
+
+            slow = slow.next
+            fast = fast.next.next
+
+        slow.next = slow.next.next
+
+        return head
+    
+
+
+
+
+328. Odd Even Linked List
+
+Given the head of a singly linked list, group all the nodes with odd indices together followed by the nodes with even indices, and return the reordered list.
+The first node is considered odd, and the second node is even, and so on.
+Note that the relative order inside both the even and odd groups should remain as it was in the input.
+You must solve the problem in O(1) extra space complexity and O(n) time complexity.
+
+
+// code
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+        if not head :
+
+            return None
+
+        odd = head
+        even = head.next 
+
+        even_list = even
+
+        while even and even.next :
+
+            odd.next = odd.next.next
+            odd = odd.next
+
+            even.next = even.next.next
+            even = even.next
+
+        
+        odd.next = even_list 
+
+        return head
+        
+ 
