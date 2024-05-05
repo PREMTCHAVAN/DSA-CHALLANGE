@@ -1,0 +1,73 @@
+
+104. Maximum Depth of Binary Tree
+
+Given the root of a binary tree, return its maximum depth.
+A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+
+
+code
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+
+        if root is None :
+
+            return 0
+
+        else :
+
+            l_count = self.maxDepth( root.left )
+            r_count = self.maxDepth( root.right )
+
+            return max( l_count , r_count ) + 1
+
+
+
+872. Leaf-Similar Trees
+Consider all the leaves of a binary tree, from left to right order, the values of those leaves form a leaf value sequence.
+
+
+code
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+
+    def dfs( root , s ) :
+
+        if root is None :
+
+            return
+
+        if root.left is None and root.right is None :
+
+            s.append(root.val)
+
+        Solution.dfs(root.left , s)
+        Solution.dfs(root.right , s)
+
+
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+
+        s1 = []
+        s2 = []
+
+        Solution.dfs(root1 , s1)
+        Solution.dfs(root2 , s2)
+
+        return s1==s2
+
+
+
+        
+        
