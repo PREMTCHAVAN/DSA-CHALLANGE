@@ -1,0 +1,17 @@
+
+WORKING ON A PROJECT ( GAME )
+
+
+def score( self ):
+        
+        if len(self.pipe_list) > 0 :
+            if self.bird_obj.rect.left > self.pipe_list[0].rect1_down.left and self.bird_obj.rect.right < self.pipe_list[0].rect1_down.right and self.pipe_monitering is False :
+
+                self.pipe_monitering = True
+
+            if self.bird_obj.rect.left > self.pipe_list[0].rect1_down.right and self.pipe_monitering is True :
+
+                self.pipe_monitering = False
+                self.bird_score += 1
+
+                self.score_text = self.font.render(f" SCORE : {self.bird_score} " , True , (0,0,0))
