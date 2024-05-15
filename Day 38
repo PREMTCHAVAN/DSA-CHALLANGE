@@ -1,0 +1,28 @@
+TOMORROW IS MY PYTHON EXAM 😂🤣😀😁
+
+
+prices = [7, 1, 5, 3, 6, 4]
+
+
+def max_price( l ) :
+
+    max_p = 0
+    min_p = l[0]
+
+    for price in prices :
+
+        if price < min_p :
+
+            min_p = price
+
+        else :
+
+            profit = price - min_p
+            max_p = max( max_p , profit )
+
+    return max_p
+
+
+res = max_price( prices )
+print(" MAX_PRICE = ",res)
+
