@@ -1,0 +1,60 @@
+TODAY IS DAY 40 OF MY CODING JOURNEY 😀😀😁🤣😂
+
+
+268. Missing Number
+
+Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+
+Example 1:
+
+Input: nums = [3,0,1]
+Output: 2
+Explanation: n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.
+
+
+code 
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        return ( ( len(nums) * (len(nums) + 1) ) // 2 ) - sum(nums)
+
+
+
+
+
+
+
+
+
+125. Valid Palindrome
+
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+Given a string s, return true if it is a palindrome, or false otherwise.
+
+Example 1:
+
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+
+
+
+
+
+code
+
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+
+        act_s = ""
+
+        for i in s :
+
+            if i.isalnum() :
+
+                act_s = act_s + i.lower()
+
+        
+        return act_s == act_s[ : : -1]
+        
