@@ -1,0 +1,124 @@
+IMPLEMENTIGN SORTING ALGORITHMS 
+
+BUBBLE SORT
+SELECTION SORT 
+
+INSERTION SORT
+
+
+code
+
+
+
+
+
+import time
+
+class Sorter :
+
+    #  IMPLEMENTING SORTING ALOG 
+
+
+    def bubble_sort(self , arr) :
+
+        arr_len = len(arr)
+
+        start_time = time.time()
+
+        for i in range(arr_len - 1 , 0 , -1 ) :
+
+            for k in range(i) :
+
+                if arr[k] > arr[k+1] :
+
+                    arr[k] , arr[k+1] = arr[k+1] , arr[k]
+
+        
+        end_time = time.time()
+
+
+        return arr , ( end_time - start_time )
+
+    def selection_sort(self , arr ):
+
+        n = len(arr)
+
+        start_time = time.time()
+
+        for i in range(n-1) :
+
+            minn = i
+            
+            for j in range( i + 1 , n ) :
+
+                if arr[j] < arr[minn] :
+
+                    minn = j
+
+            arr[i] , arr[minn] = arr[minn] , arr[i]
+
+        end_time = time.time()
+
+        return arr , ( end_time - start_time )
+
+
+    
+    def inserction_sort(self , arr) :
+
+
+        start_time = time.time()
+
+        n = len(arr)
+
+        for i in range(1,n) :
+
+            key = arr[i]
+            j = i - 1
+
+            while j >= 0 and arr[j] > key :
+
+                arr[j + 1] = arr[j]
+                j -= 1
+
+            arr[j + 1] = key
+
+
+        end_time = time.time()
+
+
+        return arr , ( end_time - start_time )
+
+
+
+
+
+
+
+
+
+
+arr = [20,3,5,60,99,100 ]
+obj = Sorter()
+
+sorted_array , time_com = obj.bubble_sort( arr )
+
+print( "BUBBLE SORT ")
+print( "SORTED ARRAY " , sorted_array)
+print( "TIME COMPLEXITY = ",time_com , "ms")
+
+
+sorted_array2 , time_com2 = obj.selection_sort( arr )
+
+print()
+print("SELECTION SORT ")
+print( "SORTED ARRAY " , sorted_array2)
+print( "TIME COMPLEXITY = ",time_com2 , "ms")
+
+
+arr = [ 40 , 20 , 2 , 3 ]
+sorted_array , time_com = obj.inserction_sort(arr)
+
+print()
+print("SELECTION SORT ")
+print( "SORTED ARRAY " , sorted_array)
+print( "TIME COMPLEXITY = ",time_com , "ms")
