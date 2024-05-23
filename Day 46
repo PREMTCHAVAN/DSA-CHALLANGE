@@ -1,0 +1,249 @@
+IMPLEMENTIGN SORTING ALGORITHMS 
+
+BUBBLE SORT
+SELECTION SORT 
+INSERTION SORT
+QUICK SORT
+
+MERGE SORT
+
+
+code
+
+
+
+import time
+
+class Sorter :
+
+    #  IMPLEMENTING SORTING ALOG 
+
+
+    def bubble_sort(self , arr) :
+
+        arr_len = len(arr)
+
+        start_time = time.time()
+
+        for i in range(arr_len - 1 , 0 , -1 ) :
+
+            for k in range(i) :
+
+                if arr[k] > arr[k+1] :
+
+                    arr[k] , arr[k+1] = arr[k+1] , arr[k]
+
+        
+        end_time = time.time()
+
+
+        return arr , ( end_time - start_time )
+
+    def selection_sort(self , arr ):
+
+        n = len(arr)
+
+        start_time = time.time()
+
+        for i in range(n-1) :
+
+            minn = i
+            
+            for j in range( i + 1 , n ) :
+
+                if arr[j] < arr[minn] :
+
+                    minn = j
+
+            arr[i] , arr[minn] = arr[minn] , arr[i]
+
+        end_time = time.time()
+
+        return arr , ( end_time - start_time )
+
+
+    
+    def inserction_sort(self , arr) :
+
+
+        start_time = time.time()
+
+        n = len(arr)
+
+        for i in range(1,n) :
+
+            key = arr[i]
+            j = i - 1
+
+            while j >= 0 and arr[j] > key :
+
+                arr[j + 1] = arr[j]
+                j -= 1
+
+            arr[j + 1] = key
+
+
+        end_time = time.time()
+
+
+        return arr , ( end_time - start_time )
+
+
+
+    def partitation( self , arr , low , high ) :
+
+        p = arr[low] 
+
+        i = low + 1
+        j = high
+
+
+        while True :
+
+            while i <= j and arr[i] <= p :
+
+                i += 1
+            
+            while i <= j and arr[j] >= p :
+
+                j -= 1
+
+            
+            if i <= j :
+
+                arr[i] , arr[j] = arr[j] , arr[i]
+
+            else :
+
+                break
+
+        
+        arr[low] , arr[j] = arr[j] , arr[low]
+
+        return j
+
+
+    
+
+    def quick_sort( self , arr , low , high ) :
+
+        start_time = time.time()
+
+        if low < high :
+
+            pivot = self.partitation( arr , low , high - 1)
+
+            self.quick_sort( arr , low , pivot )
+            self.quick_sort( arr , pivot + 1 , high )
+
+        end_time = time.time()
+        
+        return arr , ( end_time - start_time ) 
+
+
+    def merge( self , left , right ) :
+
+        new_arr = []
+
+        i = j = 0
+
+        while i < len(left) and j < len(right) :
+
+            if left[i] < right[j] :
+
+                new_arr.append(left[i])
+
+                i += 1
+
+            else :
+
+                new_arr.append(right[j])
+
+                j += 1
+
+            
+        new_arr.extend(left[i:])
+        new_arr.extend(right[j:])
+
+        return new_arr
+
+
+
+    def merge_sort(self, arr):
+        
+        if len(arr) <= 1 :
+
+            return arr , 0
+
+        mid = len(arr) // 2
+
+        start_time = time.time()
+
+        left_h = arr[:mid]
+        right_h = arr[mid:]
+
+        left_arr, _ = self.merge_sort(left_h)                                                           # MERGE SORT 
+        right_arr, _ = self.merge_sort(right_h)
+
+        end_time = time.time()
+
+        start_merge_time = time.time()
+
+        merged_arr = self.merge(left_arr,right_arr)
+
+        end_merge_time = time.time()
+
+
+        return merged_arr , ((end_time - start_time) + (end_merge_time - start_merge_time))
+ 
+
+
+
+
+
+arr = [20,3,5,60,99,100 ]
+obj = Sorter()
+
+sorted_array , time_com = obj.bubble_sort( arr )
+
+print( "BUBBLE SORT ")
+print( "SORTED ARRAY " , sorted_array)
+print( "TIME COMPLEXITY = ",time_com , "ms")
+
+
+sorted_array2 , time_com2 = obj.selection_sort( arr )
+
+print()
+print("SELECTION SORT ")
+print( "SORTED ARRAY " , sorted_array2)
+print( "TIME COMPLEXITY = ",time_com2 , "ms")
+
+
+arr = [ 40 , 20 , 2 , 3 ]
+sorted_array , time_com = obj.inserction_sort(arr)
+
+print()
+print("SELECTION SORT ")
+print( "SORTED ARRAY " , sorted_array)
+print( "TIME COMPLEXITY = ",time_com , "ms")
+
+
+arr = [ 100 , 200 , 2, 33 , 879 , 45 ]
+
+high = len( arr )
+
+sorted_array , time_com = obj.quick_sort( arr , 0 , high )
+
+print()
+print("QUICK SORT ")
+print( "SORTED ARRAY " , sorted_array)
+print( "TIME COMPLEXITY = ",time_com , "ms")
+
+
+
+sorted_array , time_com = obj.merge_sort(arr)
+print()
+print("MERGE SORT ")
+print( "SORTED ARRAY " , sorted_array)
+print( "TIME COMPLEXITY = ",time_com , "ms")
+
