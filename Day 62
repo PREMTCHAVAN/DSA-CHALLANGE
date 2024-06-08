@@ -1,0 +1,108 @@
+CREATING AN DAY PLANNER 
+
+
+                                                                                DAY PLANNER  😀😀😂
+
+
+
+
+
+
+code
+
+
+
+
+
+planner = []
+
+task = ""
+index = 0
+replace_index = 0
+
+
+def add_task(task) :
+
+    planner.append(task)
+    print(" TASK ADDED ")
+
+
+def delete_task(index) :
+
+    planner.pop(index)
+    print(" TASK DELETED ")
+
+
+def change_seq(index , replace_index) :
+
+    planner[index] , planner[replace_index] = planner[replace_index] , planner[index]
+    print(" INDEX REPLACED ")
+
+
+def update_task(index , task) :
+
+    planner[index] = task
+
+    print(" TASK ALTERED ")
+
+
+def display() :
+
+    if planner :
+        count = 0
+        for data in planner :
+
+            print(" " , count , " " , data )
+
+            count += 1
+    else :
+
+        print(" NOT DATA IS PRESENT , ")
+
+
+
+while True :
+        
+    print()
+    print("\n")
+    print(" DAY PLANNER ")
+    print()
+    print(" 1 ADD TASK ")
+    print(" 2 UPDATE TASK ")
+    print(" 3 CHANGE TASK SEQUENCE ")
+    print(" 4 SHOW LIST")
+    print(" 5 REMOVE TASK ")
+    print(" 6 DONE, ")
+
+    opt_inp = int(input(" ENTER OPTION = ") )
+
+    if opt_inp == 1 :
+
+        task = input(" ENTER TASK : ")
+        add_task(task)
+
+    elif opt_inp == 2 :
+
+        index = int(input(" ENTER INDEX NUMBER = "))
+        task = input(" ENTER TASK : ")
+        update_task(index , task)
+
+    elif opt_inp == 3 :
+
+        index = int(input(" ENTER INDEX NUMBER = "))
+        replace_index = int(input(" ENTER REPLACE INDEX NUMBER = "))
+        change_seq(index , replace_index)
+
+    elif opt_inp == 4 :
+
+        print(" NUM       TASK ")
+        display()
+
+    elif opt_inp == 5 :
+        index = int(input(" ENTER INDEX NUMBER = "))
+        delete_task(index)
+    elif opt_inp == 6 :
+
+        break
+    else :
+        print(" ENTER VALID OPTION , ")
