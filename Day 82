@@ -1,0 +1,135 @@
+IMPLEMENTING DFS of Tree
+
+
+code
+
+
+
+class Node :
+
+    def __init__(self , root) :
+
+        self.root = root
+        self.L_child = None
+        self.R_child = None 
+
+    
+    def insert( self , data ) :
+
+
+        if self.root is None :
+
+            self.root = data
+            return
+
+        if self.root == data : return 
+
+        if self.root > data :
+
+            if self.L_child :
+
+                self.L_child.insert(data)
+
+            else :
+
+                self.L_child = Node(data)
+
+        else :
+
+
+            if self.R_child :
+
+                self.R_child.insert( data )
+
+            else :
+
+                self.R_child = Node(data)
+
+
+
+
+    
+    def BFS( self ) :
+
+
+        que = []
+        que.append(self) 
+
+
+        while que :
+
+            n = len( que )
+            for _ in range( n ) :
+
+                node = que.pop( 0 )
+                print( node.root )
+
+                if node.L_child : 
+                    
+                    que.append(node.L_child)
+
+                if node.R_child :
+
+                    que.append(node.R_child)
+
+
+
+
+    def DFS_inorder ( self ) :
+
+
+        if self.L_child :
+
+            self.L_child.DFS()
+
+        print( self.root )
+
+        if self.R_child :
+
+            self.R_child.BFS()
+
+
+
+    def DFS_Preinorder ( self ) :
+
+
+        print( self.root )
+
+        if self.L_child :
+
+            self.L_child.DFS()
+
+        if self.R_child :
+
+            self.R_child.BFS()
+
+
+    def DFS_Preinorder ( self ) :
+
+        
+        if self.L_child :
+
+            self.L_child.DFS()
+    
+        if self.R_child :
+
+            self.R_child.BFS()
+
+        print( self.root )
+
+
+
+obj = Node(5)
+
+listt = [10,30,40,5,1,100,3,2,4]
+
+for i in listt :
+
+    obj.insert(i)
+
+print(" BFS ")
+obj.BFS()
+
+print(" DFS " )
+
+obj.DFS()
