@@ -1,0 +1,61 @@
+
+TRYING TO IMPLEMENT GRAPH 
+
+
+
+
+def add_node ( v ) :
+
+    global node_count
+
+    if v in graph :
+
+        print("NODE IS ALREADY PRESENT ")
+
+    else :
+
+        node_count += 1
+        nodes.append( v )
+
+        for n in graph :
+
+            n.append( 0 )
+
+        temp_list = []
+
+        for i in range( node_count ) :
+
+            temp_list.append( 0 )
+
+        graph.append( temp_list )
+
+
+def print_graph() :
+
+    for i in range( node_count ) :
+        
+        for k in range( node_count ) :
+
+            print( graph[i][k] , end=" ")
+        
+        print()
+
+
+graph = []
+nodes = []
+
+node_count = 0
+
+print("BEFORE ADDING NODES ")
+print( nodes )
+print( graph )
+print_graph()
+
+add_node(3)
+add_node(10)
+
+print( "AFTER ADDING NODES ")
+print( nodes )
+print( graph )
+print_graph()
+
