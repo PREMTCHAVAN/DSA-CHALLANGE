@@ -1,0 +1,153 @@
+
+TRYING TO IMPLEMENTING GRAPH BY ADJECENT LIST 
+
+
+
+code 
+
+
+
+
+def add_node_byAdj_Matrix( v ) :
+
+    global node_count
+
+    if v in graph :
+
+        print("NODE IS ALREADY PRESENT ")
+
+    else :
+
+        node_count += 1
+        nodes.append( v )
+
+        for n in graph :
+
+            n.append( 0 )
+
+        temp_list = []
+
+        for i in range( node_count ) :
+
+            temp_list.append( 0 )
+
+        graph.append( temp_list )
+
+
+
+def add_edge_byAdj_Matrix( v1 , v2 ) :
+
+
+    if v1 not in nodes :
+
+        print("V1 IS NOT PRESENT ")
+
+    elif v2 not in nodes :
+
+        print("N2 IS NOT PRESENT ")
+
+    else :
+
+
+        ind1 = nodes.index( v1 )
+        ind2 = nodes.index( v2 )
+
+        graph[ind1][ind2] = 1
+        graph[ind2][ind1] = 1
+
+
+
+
+
+
+def print_graph() :
+
+    for i in range( node_count ) :
+        
+        for k in range( node_count ) :
+
+            print( graph[i][k] , end=" ")
+        
+        print()
+
+
+
+
+def add_node_byAdj_list( v ) :
+
+
+    if v in graph_list :
+
+        print("NODE IS ALREADY PRESENT ")
+
+    else :
+
+
+        graph_list[ v ] = []
+
+
+
+
+def add_edge_byAdj_list( v1 , v2 ) :
+
+    if v1 not in graph_list :
+
+        print("V1 IS NOT PRESENT ")
+
+    elif v2 not in graph_list :
+
+        print("V2 NOT PRESENT ")
+
+
+    else :
+
+        graph_list[v1].append( v2 )
+        graph_list[v2].append( v1 )
+
+
+
+
+graph = []
+nodes = []
+
+graph_list = {}
+
+node_count = 0
+
+# print("BEFORE ADDING NODES ")
+# print( nodes )
+# print( graph )
+# print_graph()
+
+# add_node_byAdj_Matrix(3)
+# add_node_byAdj_Matrix(10)
+# add_node_byAdj_Matrix(50)
+
+# add_edge_byAdj_Matrix( 3 , 10 )
+
+# print( "AFTER ADDING NODES ")
+# print( nodes )
+# print( graph )
+# print_graph()
+
+
+
+
+
+
+
+
+print("NODES BEFORE ADDING ")
+print( graph_list )
+
+add_node_byAdj_list(5)
+add_node_byAdj_list(50)
+
+add_edge_byAdj_list( 5 , 50 )
+
+add_node_byAdj_list(60)
+
+
+print("NODES AFTER ADDING ")
+
+print(graph_list)
