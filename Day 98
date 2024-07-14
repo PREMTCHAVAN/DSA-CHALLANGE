@@ -1,0 +1,304 @@
+IMPLEMENTING GRAPH Using ADJENCY MATRIX  💻 
+
+
+code
+
+
+graph = []
+nodes = []
+
+
+node_count = 0
+
+
+def add_node( v ) :
+
+
+    global node_count 
+
+    if v in nodes :
+
+
+        print("V IS PRESENT ")
+
+    else :
+
+        nodes.append( v )
+        node_count += 1
+
+        for i in graph :
+
+            i.append( 0 )
+
+
+        temp_list = []
+
+        for i in range( node_count ) :
+
+            temp_list.append(0)
+
+
+        graph.append( temp_list )
+        
+
+
+
+
+def add_edge ( v1 , v2 ) :
+
+    if v1 not in nodes :
+
+        print("V1 NOT PRESENT ")
+
+    elif v2 not in nodes :
+
+        print("V2 NOT IN PRESENT  GRAPH ")
+
+    else :
+
+
+
+        ind1 = nodes.index( v1 )
+        ind2 = nodes.index( v2 )
+
+        graph[ind1][ind2] = 1
+        graph[ind2][ind1] = 1
+
+
+
+def delete_node ( v ) :
+
+
+
+    global node_count
+
+    if v not in nodes :
+
+        print("V NOT PRESENNT IN GRAPH ")
+
+    
+    else :
+
+
+        ind = nodes.index( v )
+
+        nodes.remove( v )
+        node_count -= 1
+
+        graph.pop( ind )
+        for i in graph :
+
+            i.pop( ind )
+
+        
+
+
+
+def delete_edge ( v1 , v2 ) :
+
+
+
+    if v1 not in nodes :
+
+        print("V1 NOT PRESENT ")
+
+    elif v2 not in nodes :
+
+        print("V2 NOT PRESENT IN GRAPH ")
+
+
+    else :
+
+
+        ind1 = nodes.index( v1 )
+        ind2 = nodes.index( v2 )
+
+        graph[ind1][ind2] = 0
+        graph[ind2][ind1] = 0
+
+
+
+def print_graph() :
+
+
+    for i in range( node_count ) :
+
+        for k in range( node_count ) :
+
+
+            print(graph[i][k] , end=" ")
+
+        print()
+
+
+
+
+
+print("BEFORE ADDING NODES ")
+print(nodes)
+print_graph()
+
+
+print("AFTER ADDING NODES ")
+
+add_node(10)
+add_node(20)
+add_node(30)
+add_node(40)
+
+add_edge(20,30)
+add_edge( 20 , 40 )
+
+print(nodes)
+print_graph()
+
+print("AFTER REMOVING EDGES ")
+
+delete_edge(20 , 40)
+print(nodes)
+print_graph()
+
+
+print("AFTER DELETIGN NODE ")
+delete_node(40)
+print(nodes)
+print_graph()
+
+
+
+
+
+
+IMPLEMENTING GRAPH USING ADJENCY LIST  💻 
+
+
+
+code
+
+
+
+
+
+
+graph_dict = {}
+
+
+def add_node( v ) :
+    
+
+    if v in graph_dict :
+
+        print("NODE IS ALREADY PRESENT ")
+
+    else :
+
+        graph_dict[v] = []
+
+
+
+
+
+def add_edge( v1 , v2 ) :
+
+
+
+    if v1 not in graph_dict :
+
+        print("V1 NOT PRESENT ")
+
+    elif v2 not in graph_dict :
+
+
+        print("V2 NOT PRESENT ")
+
+
+    else :
+
+
+        graph_dict[v1].append( v2 )
+        graph_dict[v2].append( v1 )
+
+
+
+
+
+
+
+def delete_node( v ) :
+
+
+    if v not in graph_dict :
+
+        print("NODE NOT PRESENT ")
+
+
+    else :
+
+
+        graph_dict.pop( v )
+
+        for i in graph_dict :
+
+            listtt = graph_dict[i]
+
+            if v in listtt :
+
+                listtt.remove( v )
+
+
+def delete_edge( v1 , v2 ) :
+
+
+
+    if v1 not in graph_dict :
+
+        print("V1 NOT PRESENT ")
+
+    elif v2 not in graph_dict :
+
+
+        print("V2 NOT PRESENT ")
+
+
+    else :
+
+
+        if v2 in graph_dict[v1] :
+
+            graph_dict[v1].remove( v2 )
+            graph_dict[v2].remove( v1 )
+
+
+
+
+
+
+print("BEFORE ADDING NODES ")
+print(graph_dict)
+
+
+print("AFTER ADDING NODES ")
+add_node( 10 )
+add_node( 30 )
+add_node( 20 )
+add_node( 40 )
+
+
+print( graph_dict )
+
+print("AFTER ADDING EDGES ")
+
+add_edge(10,40)
+add_edge(20,30)
+add_edge(20,40)
+print(graph_dict)
+
+
+delete_edge( 20 , 40)
+delete_edge( 20 , 30 )
+print("AFTER DELETIGN EDGES ")
+print(graph_dict)
+
+delete_node( 40 )
+print( " AFTER DELETING NODE ")
+print(graph_dict)
