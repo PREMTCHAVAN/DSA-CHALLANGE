@@ -1,0 +1,153 @@
+
+LEARNING ABOUT GRAPHS 
+DFS ( Depth First Search )
+
+TRING TO IMPLEMENT IT 🍃 
+
+
+
+code
+
+
+
+
+
+graph_dict = {}
+visited = set()
+
+def add_node( v ) :
+    
+
+    if v in graph_dict :
+
+        print("NODE IS ALREADY PRESENT ")
+
+    else :
+
+        graph_dict[v] = []
+
+
+
+
+
+def add_edge( v1 , v2 ) :
+
+
+
+    if v1 not in graph_dict :
+
+        print("V1 NOT PRESENT ")
+
+    elif v2 not in graph_dict :
+
+
+        print("V2 NOT PRESENT ")
+
+
+    else :
+
+
+        graph_dict[v1].append( v2 )
+        graph_dict[v2].append( v1 )
+
+
+
+
+
+
+
+def delete_node( v ) :
+
+
+    if v not in graph_dict :
+
+        print("NODE NOT PRESENT ")
+
+
+    else :
+
+
+        graph_dict.pop( v )
+
+        for i in graph_dict :
+
+            listtt = graph_dict[i]
+
+            if v in listtt :
+
+                listtt.remove( v )
+
+
+def delete_edge( v1 , v2 ) :
+
+
+
+    if v1 not in graph_dict :
+
+        print("V1 NOT PRESENT ")
+
+    elif v2 not in graph_dict :
+
+
+        print("V2 NOT PRESENT ")
+
+
+    else :
+
+
+        if v2 in graph_dict[v1] :
+
+            graph_dict[v1].remove( v2 )
+            graph_dict[v2].remove( v1 )
+
+
+
+def DFS (node , visited , graph_dict ) :
+
+
+    if node not in visited :
+
+        print(node)
+        visited.add(node)
+
+        for i in graph_dict[node] :
+
+            DFS( i , visited , graph_dict )
+
+
+
+
+
+
+print("BEFORE ADDING NODES ")
+print(graph_dict)
+
+
+print("AFTER ADDING NODES ")
+add_node( 10 )
+add_node( 30 )
+add_node( 20 )
+add_node( 40 )
+
+
+print( graph_dict )
+
+print("AFTER ADDING EDGES ")
+
+add_edge(10,40)
+add_edge(20,30)
+add_edge(20,40)
+print(graph_dict)
+
+
+delete_edge( 20 , 40)
+delete_edge( 20 , 30 )
+print("AFTER DELETIGN EDGES ")
+print(graph_dict)
+
+delete_node( 40 )
+print( " AFTER DELETING NODE ")
+print(graph_dict)
+
+
+DFS(10 , visited , graph_dict )
